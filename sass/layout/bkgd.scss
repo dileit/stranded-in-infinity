@@ -1,0 +1,219 @@
+///////////////////////////
+/// Background Title /////////////
+.title {
+  position: relative;
+}
+
+.title-img {
+  position: absolute;
+  width: 80rem;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -65%);
+  z-index: -1005;
+
+  @media only screen and (max-width: $bp-largest) {
+    width: 65rem;
+    transform: translate(-50%, -70%);
+  }
+
+  @media only screen and (max-width: $bp-large) {
+    width: 55rem;
+    transform: translate(-50%, -80%);
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    width: 45rem;
+    transform: translate(-50%, -80%);
+  }
+}
+
+///////////////////////////
+/// Background Layout ////
+
+.bkgd-layout {
+  // Top Portion
+  &__top {
+    position: relative;
+    z-index: -1001;
+
+    @media only screen and (max-width: $bp-largest) {
+      & img {
+        width: 45%;
+        height: auto;
+      }
+    }
+
+    @media only screen and (max-width: $bp-large) {
+      & img {
+        width: 35%;
+        height: auto;
+      }
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      & img {
+        width: 30%;
+        height: auto;
+      }
+    }
+
+    &--left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(0, -50%);
+
+      @media only screen and (max-width: $bp-largest) {
+        transform: translate(-5%, -55%);
+      }
+
+      @media only screen and (max-width: $bp-large) {
+        transform: translate(-3%, -70%);
+      }
+
+      @media only screen and (max-width: $bp-medium) {
+        transform: translate(-5%, -65%);
+      }
+    }
+
+    &--right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(50%, -50%);
+
+      @media only screen and (max-width: $bp-largest) {
+        transform: translate(57%, -55%);
+      }
+
+      @media only screen and (max-width: $bp-large) {
+        transform: translate(68%, -70%);
+      }
+
+      @media only screen and (max-width: $bp-medium) {
+        transform: translate(72%, -75%);
+      }
+    }
+  }
+
+  // Bottom Portion
+
+  &__btm {
+    position: relative;
+    z-index: -1002;
+
+    @media only screen and (max-width: $bp-largest) {
+      & img {
+        width: 40%;
+        height: auto;
+      }
+    }
+
+    @media only screen and (max-width: $bp-large) {
+      & img {
+        width: 30%;
+        height: auto;
+      }
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      & img {
+        width: 25%;
+        height: auto;
+      }
+    }
+
+    &--left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(0, 50%);
+
+      @media only screen and (max-width: $bp-largest) {
+        transform: translate(18%, -55%);
+      }
+
+      @media only screen and (max-width: $bp-large) {
+        transform: translate(15%, -70%);
+      }
+
+      @media only screen and (max-width: $bp-medium) {
+        transform: translate(7%, -70%);
+      }
+    }
+
+    &--right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(50%, 55%);
+
+      @media only screen and (max-width: $bp-largest) {
+        transform: translate(42%, -57%);
+      }
+
+      @media only screen and (max-width: $bp-large) {
+        transform: translate(58%, -70%);
+      }
+
+      @media only screen and (max-width: $bp-medium) {
+        transform: translate(67%, -72%);
+      }
+    }
+  }
+}
+
+// Image itself
+
+.char-img {
+  width: 50%;
+  height: auto;
+}
+
+//ORIGINAL CODE
+// .background {
+// }
+
+// .back-layout-top {
+// 	position: relative;
+// 	z-index: -1001;
+// }
+
+// .top-left {
+// 	position: absolute;
+// 	top: 0;
+// 	left: 0;
+// 	transform: translate(0, -50%);
+// }
+
+// .top-right {
+// 	position: absolute;
+// 	top: 0;
+// 	right: 0;
+// 	transform: translate(50%, -50%);
+// }
+
+// .back-layout-btm {
+// 	position: relative;
+// 	z-index: -1002;
+// }
+
+// .btm-left {
+// 	position: absolute;
+// 	top: 0;
+// 	left: 0;
+// 	transform: translate(0, 23%);
+// }
+
+// .btm-right {
+// 	position: absolute;
+// 	top: 0;
+// 	right: 0;
+// 	transform: translate(50%, 27%);
+// }
+
+// .char-img {
+// 	width: 50%;
+// 	height: auto;
+// }

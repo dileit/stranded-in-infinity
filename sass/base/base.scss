@@ -1,0 +1,69 @@
+// Variables
+
+:root {
+  --color-primary: #df2059;
+  --color-primary-2: #ff3366;
+  --color-primary-3: #ff3366fd;
+  --color-secondary: rgb(28, 240, 255);
+  --color-secondary-1: rgb(48, 93, 151);
+  --color-secondary-2: rgb(60, 115, 187);
+  --color-secondary-3: rgb(74, 129, 201);
+  --color-grey-light-1: #eee;
+  --color-grey-light-4: #ccc;
+  --color-grey-dark-1: #999;
+  --color-grey-dark-2: #20090e;
+  --color-black: #000;
+
+  --shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.6);
+}
+
+$bp-largest: 75em; // 1200 px
+$bp-large: 62.5em; // 1000 px
+$bp-medium: 43.75em; // 700px
+$bp-small: 31.25em; // 500px
+$bp-smallest: 25em; // 400px
+
+/*
+Options
+
+Primary light: #FF3366
+Primary dark: #BA265D
+Grey light 1: #faf9f9
+Grey light 2: #f4f2f2
+Grey light 3: #f0eeee
+Grey light 4: #ccc
+Grey dark 1: #333
+Grey dark 2: #777
+Grey dark 3: #999
+*/
+
+// Base CSS
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%; //1rem = 10px
+  box-sizing: border-box;
+  overflow-x: hidden;
+
+  @media only screen and (max-width: $bp-small) {
+    font-size: 40%;
+  }
+}
+
+body {
+  font-family: 'Permanent Marker', 'Monsterrat', sans-serif;
+  line-height: 1.6;
+  background: var(--color-black);
+
+  min-height: 100vh;
+}
