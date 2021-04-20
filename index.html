@@ -8,13 +8,9 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <!--Title Image-->
-
     <div class="title">
       <img class="title-img" src="img/title.jpg" />
     </div>
-
-    <!--Background Layout-->
 
     <div class="bkgd-layout">
       <div class="bkgd-layout__top">
@@ -35,28 +31,22 @@
       </div>
     </div>
 
-    <!--Center Content-->
-
     <div class="container">
-      <!--Header Player Nav-->
-
       <header class="header">
         <button class="reset btn">Reset!</button>
         <h1>Hello Crew!</h1>
         <nav class="player-nav">
-          <div class="player-nav__icon-box">
-            <button class="next btn">NEXT</button>
-          </div>
-          <div class="player-nav__icon-box">
-            <button class="skip btn">SKIP</button>
-          </div>
-          <div class="player-nav__icon-box">
-            <button class="help show-modal btn">?</button>
-          </div>
+          <!-- <div class="player-nav__icon-box"> -->
+          <button class="next btn new-quote">NEXT</button>
+          <!-- </div> -->
+          <!-- <div class="player-nav__icon-box"> -->
+          <button class="skip btn">SKIP</button>
+          <!-- </div> -->
+          <!-- <div class="player-nav__icon-box"> -->
+          <button class="help show-modal btn">?</button>
+          <!-- </div> -->
         </nav>
       </header>
-
-      <!--Modal Element-->
 
       <div class="modal hidden">
         <button class="close-modal">&times;</button>
@@ -65,12 +55,11 @@
           This is a guessing game using quotes from characters played in a
           tabletop RPG, Stranded In Infinity. When you click 'Start!', the game
           will generate a quote at random. You then have the select the
-          character at the left and click 'Check!' to confirm your answer. The
-          game will then display the name of the character who said the quote,
-          the image of the corresponding character and if your answer was
-          correct or not. There are 5 questions per game in total. Please click
-          'NEXT' to move on to a new question, 'SKIP' to avoid the question, and
-          'RESET' to reload the game.
+          character at the left and click 'Check!' to confirm your answer. It
+          will display the character name and image and if you were correct or
+          not. There are 5 questions per game in total. Please click 'NEXT' to
+          move on to a new question, 'SKIP' to avoid the question, and 'RESET'
+          to reload the game.
         </p>
         <h1>For testing 🧪</h1>
         <p>
@@ -79,13 +68,9 @@
       </div>
 
       <div class="content">
-        <!--Side Navigation-->
-
         <div class="sidebar">
           <div class="side-sel">
-            <!--Selection Form-->
-
-            <form class="side-sel__form" name="form" action="#">
+            <form class="side-sel__form" name="form" id="form" action="#">
               <fieldset class="side-sel__field" id="fieldset">
                 <legend class="side-sel__leg">Select Character:</legend>
                 <div class="side-sel__grp">
@@ -131,23 +116,16 @@
                 </div>
               </fieldset>
               <div class="side-sel__sub">
-                <!--Submit Button-->
                 <input class="submit btn" type="submit" value="Check!" />
               </div>
             </form>
           </div>
-          <!--Legal Note-->
           <div class="legal">
             &copy; 2020 by Diana Leitzman. Artwork provided by Megan Bos. All
             rights reserved.
           </div>
         </div>
-
-        <!--Game View Container-->
-
         <main class="game-view">
-          <!--Game Heading-->
-
           <div class="overview">
             <h2 class="overview__heading">Who said...?</h2>
             <div class="overview__questions">
@@ -172,8 +150,6 @@
             </div>
           </div>
 
-          <!--Detail Boxes-->
-
           <div class="detail">
             <figure class="quote">
               <blockquote class="quote__text">
@@ -194,7 +170,6 @@
       </div>
     </div>
 
-    <!--Modal Overlay-->
     <div class="overlay hidden"></div>
 
     <script src="script.js"></script>

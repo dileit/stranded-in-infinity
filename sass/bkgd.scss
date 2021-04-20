@@ -1,35 +1,4 @@
-///////////////////////////
-/// Background Title /////////////
-.title {
-  position: relative;
-}
-
-.title-img {
-  position: absolute;
-  width: 80rem;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -65%);
-  z-index: -1005;
-
-  @media only screen and (max-width: $bp-largest) {
-    width: 65rem;
-    transform: translate(-50%, -70%);
-  }
-
-  @media only screen and (max-width: $bp-large) {
-    width: 55rem;
-    transform: translate(-50%, -80%);
-  }
-
-  @media only screen and (max-width: $bp-medium) {
-    width: 45rem;
-    transform: translate(-50%, -80%);
-  }
-}
-
-///////////////////////////
-/// Background Layout ////
+// Background Layout
 
 .bkgd-layout {
   // Top Portion

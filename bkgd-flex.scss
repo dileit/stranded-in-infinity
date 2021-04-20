@@ -1,0 +1,140 @@
+.bkgd-layout {
+	display: flex;
+	flex-direction: column;
+
+	&__top {
+		display: flex;
+		justify-content: space-between;
+		// position: relative;
+		// z-index: -1001;
+
+		&--left {
+			// position: absolute;
+			// top: 0;
+			// left: 0;
+			// transform: translate(0, -50%);
+		}
+
+		&--right {
+			// position: absolute;
+			// top: 0;
+			// right: 0;
+			// transform: translate(50%, -50%);
+		}
+	}
+
+	&__btm {
+		display: flex;
+
+		justify-content: space-between;
+
+		&--left {
+			// position: absolute;
+			// top: 0;
+			// left: 0;
+			// transform: translate(0, 50%);
+		}
+
+		&--right {
+			// position: absolute;
+			// top: 0;
+			// right: 0;
+			// transform: translate(50%, 50%);
+		}
+	}
+}
+
+.char-img {
+	width: 50%;
+	height: auto;
+}
+
+//SECONDARY CODE
+
+// .bkgd-layout {
+
+// 	&__top {
+// 		position: relative;
+// 		z-index: -1001;
+
+// 		&--left {
+// 			position: absolute;
+// 			top: 0;
+// 			left: 0;
+// 			transform: translate(0, -50%);
+// 		}
+
+// 		&--right {
+// 			position: absolute;
+// 			top: 0;
+// 			right: 0;
+// 			transform: translate(50%, -50%);
+// 		}
+// 	}
+
+// 	&__btm {
+// 		position: relative;
+// 		z-index: -1002;
+
+// 		&--left {
+// 			position: absolute;
+// 			top: 0;
+// 			left: 0;
+// 			transform: translate(0, 23%);
+// 		}
+
+// 		&--right {
+// 			position: absolute;
+// 			top: 0;
+// 			right: 0;
+// 			transform: translate(50%, 27%);
+// 		}
+// 	}
+// }
+
+//ORIGINAL CODE
+// .background {
+// }
+
+// .back-layout-top {
+// 	position: relative;
+// 	z-index: -1001;
+// }
+
+// .top-left {
+// 	position: absolute;
+// 	top: 0;
+// 	left: 0;
+// 	transform: translate(0, -50%);
+// }
+
+// .top-right {
+// 	position: absolute;
+// 	top: 0;
+// 	right: 0;
+// 	transform: translate(50%, -50%);
+// }
+
+// .back-layout-btm {
+// 	position: relative;
+// 	z-index: -1002;
+// }
+
+// .btm-left {
+// 	position: absolute;
+// 	top: 0;
+// 	left: 0;
+// 	transform: translate(0, 23%);
+// }
+
+// .btm-right {
+// 	position: absolute;
+// 	top: 0;
+// 	right: 0;
+// 	transform: translate(50%, 27%);
+// }
+
+// .char-img {
+// 	width: 50%;
+// 	height: auto;
+// }
