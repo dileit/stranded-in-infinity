@@ -46,8 +46,8 @@ const quotes = [
   { quote: 'The General is mine.', name: 'Vesper' },
 ];
 
-/////////////////////////////////////////
-////  Functions
+////////////////////////////////////////
+//// Global Variables
 ////////////////////////////////////////
 
 // Generate random 5 quotes from selection without repetitions
@@ -56,29 +56,6 @@ const generate5Quotes = function (quotesArray) {
     .sort(() => (Math.random() > 0.5 ? 1 : -1))
     .slice(0, 5);
 };
-
-const init = function () {
-  // Beginning DOM
-  nextBtn.textContent = '';
-  nextBtn.textContent = 'START';
-  quoteTextAnswer.textContent = 'Think you can handle it?';
-  quoteNameAnswer.textContent = 'Hit that Start button!';
-  messageAnswer.textContent = 'Start Guessing!';
-  messageChar.textContent = '';
-  imgChar.style.display = 'none';
-};
-
-// imgChar should be a basic black square with a ? maybe?
-
-/////////////////////////////////////////
-//// Initialize Game
-/////////////////////////////////////////
-
-init();
-
-////////////////////////////////////////
-//// Global Variables
-////////////////////////////////////////
 
 // create new quotes array
 
@@ -101,35 +78,87 @@ let currentCharacter = '';
 let questionCounter = 0;
 let availableQuestions = [];
 
+availableQuestions = [...initQuotes];
+
 const SCORE_POINTS = 5;
 const MAX_QUESTIONS = 5;
 
-const startGame = () => {
-  questionCounter = 0;
+/////////////////////////////////////////
+////  Functions
+////////////////////////////////////////
+
+// initialize game function
+const init = function () {
+  // Beginning DOM
+  nextBtn.textContent = '';
+  nextBtn.textContent = 'START';
+  quoteTextAnswer.textContent = 'Think you can handle it?';
+  quoteNameAnswer.textContent = 'Hit that Start button!';
+  messageAnswer.textContent = 'Start Guessing!';
+  messageChar.textContent = '';
+  imgChar.style.display = 'none';
+
+  initQuotes = generate5Quotes(quotes);
+  curQuote = '';
+  curCharacter = '';
+  curAnswer = '';
+  curCharacterMsg = '';
+  //  curCharacterImg = '';
+  curGuess = '';
+
+  ///////////////////////////////////////
+  // Test
+  ///////////////////////////////////////
+
+  acceptingAnswers = true;
   score = 0;
+  currentQuestion = '';
+  currentCharacter = '';
+  questionCounter = 0;
+  availableQuestions = [];
+
   availableQuestions = [...initQuotes];
-  // getNextQuote();
 };
 
-// TO TEST
-// availableQuestions = [...initQuotes];
-startGame();
+// imgChar should be a basic black square with a ? maybe?
+
+/////////////////////////////////////////
+//// Initialize Game
+/////////////////////////////////////////
+
+init();
+
+////////////////////////////
+// NEW QUOTE FUNCTIONS/////
+//////////////////////////
 
 const getNextQuote = () => {
   if (availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
     quoteTextAnswer.textContent =
       "That's all there is! Great job, see you next time.";
     messageAnswer.textContent = 'Reset to play again!';
+    acceptingAnswers = false;
+    quoteNameAnswer.textContent = '';
+    return;
   }
+
+  // Clear previous content in DOM
+  quoteTextAnswer.textContent = '';
+  quoteNameAnswer.textContent = '';
+  messageAnswer.textContent = '';
+  messageChar.textContent = '';
+  imgChar.style.display = 'none';
 
   questionCounter++;
   // remove a star HTML element
-  starIcon.remove();
+  // starIcon.remove();
 
   const randomIndex = Math.floor(Math.random() * availableQuestions.length);
   let { quote, name } = availableQuestions[randomIndex];
   currentQuestion = quote;
   currentCharacter = name;
+  curAnswer = currentCharacter;
+  // console.log(curAnswer, 'get next quote name');
 
   quoteTextAnswer.textContent = currentQuestion;
 
@@ -143,91 +172,8 @@ const getNextQuote = () => {
   acceptingAnswers = true;
 };
 
-choices.forEach(choice => {
-  choice.addEventListener('click', e => {
-    e.preventDefault();
-    if (!acceptingAnswers) return;
-
-    acceptingAnswers = false;
-    const selectedChoice = e.target;
-    const selectedAnswer = selectedChoice.value;
-
-    let resultMsg =
-      selectedAnswer === currentCharacter
-        ? (messageAnswer.textContent = 'Correct Answer!')
-        : (messageAnswer.textContent = 'Wrong Answer!');
-
-    if (resultMsg === 'Correct Answer!') {
-      incrementScore(SCORE_POINTS);
-    }
-  });
-});
-
-// TO TEST ONLY //////
-// getNextQuote();
-
-/////////////////////////////////////////
-////  Header - Player Nav
-////////////////////////////////////////
-
-////////////////////////////
-//  Generate New Quote   //
-
-const generateNewQuote = function (array) {
-  // let cloneQuotes = [...initQuotes];
-  // Clear previous content in DOM
-  quoteTextAnswer.textContent = '';
-  quoteNameAnswer.textContent = '';
-  messageAnswer.textContent = '';
-  messageChar.textContent = '';
-  imgChar.style.display = 'none';
-
-  if (array.length !== 0) {
-    let randomIndex = Math.floor(Math.random() * array.length);
-    let { quote, name } = array[randomIndex];
-
-    array.splice(randomIndex, 1);
-    console.log(array);
-    // New Quote content in DOM
-    quoteTextAnswer.textContent = quote;
-
-    let curQuote = quote;
-    let curCharacter = name;
-  } else {
-    quoteTextAnswer.textContent =
-      "That's all there is! Great job, see you next time.";
-    messageAnswer.textContent = 'Reset to play again!';
-  }
-};
-
-// const generateNewQuote = function () {
-//   let cloneQuotes = [...quotes];
-//   let randomIndex = Math.floor(Math.random() * cloneQuotes.length);
-//   let { quote, name } = cloneQuotes[randomIndex];
-
-//   if (cloneQuotes.length === 0) {
-//     quoteTextAnswer.textContent = "That's all there is, good job!";
-//   }
-
-//   cloneQuotes.splice(randomIndex, 1);
-//   // console.log(cloneQuotes);
-
-//   // Clear previous content
-//   quoteTextAnswer.textContent = '';
-//   quoteNameAnswer.textContent = '';
-//   // New Quote content
-//   quoteTextAnswer.textContent = quote;
-//   // quoteNameAnswer.textContent = name;
-// };
-
-// once we retrieve the randomly generated quote, place it into the HTML doc along with the character name in a different spot
-
-// first have game run until all the quotes are used
-// also force stop the application after 5 questions including skips
-// array = []; || array.length === 0
-
-////////////////////////////
-//   Load New Quote   /////
+// ////////////////////////////
+// //   Load New Quote   /////
 
 const loadNewQuote = function (e) {
   e.preventDefault();
@@ -241,34 +187,37 @@ const loadNewQuote = function (e) {
       nextBtn.textContent = 'NEXT';
     }
 
-    if (e.target.textContent === 'NEXT') {
-    }
+    // if (e.target.textContent === 'NEXT') {
+    // }
 
     // check if form submitted
 
     // generate new quote
-    generateNewQuote(initQuotes);
+    getNextQuote();
   }
 };
 
 ////////////////////////////
-//  Generate New Quote   //
+//  SKIP ANSWER          //
+
 const skipAnswer = function (e) {
   e.preventDefault();
+  if (currentQuestion === '') {
+    window.alert("You haven't started the game yet silly!");
+    return;
+  }
+  if (questionCounter === 5) {
+    window.alert('You finished the game, reset to play again!');
+    return;
+  }
   // Load Correct Answer in DOM
   // Skip msg
   messageAnswer.textContent = 'Skipped, click NEXT';
 };
 
-// Event Handlers
-
-// When we click Start / Next
-playerNav.addEventListener('click', loadNewQuote);
-skipBtn.addEventListener('click', skipAnswer);
-resetBtn.addEventListener('click', init);
-
 ////////////////////////////
-// ? Modal Functionality //
+//   Modal Functionality //
+///////////////////////////
 
 const openModal = function () {
   console.log('? clicked');
@@ -281,27 +230,122 @@ const closeModal = function () {
   overlay.classList.add('hidden');
 };
 
-// Event Handlers
+///////////////////////////
+// Check Character Guess //
+///////////////////////////
 
+const checkAnswer = function (e) {
+  e.preventDefault();
+  const guess = document.querySelector(
+    'input[name="select-character"]:checked'
+  ).value;
+  let curGuess = guess;
+  // console.log(curGuess);
+
+  curGuess === curAnswer
+    ? (messageAnswer.textContent = 'Correct Answer!')
+    : (messageAnswer.textContent = 'Wrong Answer!');
+  // console.log(curAnswer);
+
+  quoteNameAnswer.textContent = curAnswer;
+};
+
+/////////////////////////
+// Event Handlers     //
+///////////////////////
+
+// Next Questions
+skipBtn.addEventListener('click', skipAnswer);
+resetBtn.addEventListener('click', init);
+nextBtn.addEventListener('click', loadNewQuote);
+
+// Modal Window
 btnOpenModal.addEventListener('click', openModal);
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
 
-/////////////////////////////////////////
-////  Side Select Form
-////////////////////////////////////////
-
 // Check Character Guess
-
-submitBtn.addEventListener('click', function (e) {
-  e.preventDefault();
-  const guess = document.querySelector('input[name="select-character"]:checked')
-    .value;
-  let curGuess = guess;
-  console.log(guess);
-  console.log(curGuess);
-});
+submitBtn.addEventListener('click', checkAnswer);
 
 // what happens when the guess is correct equal to the answer
 // what happens when the guess is incorrect
 // define that random quote - only defined once when we start the game/application
+
+// choices.forEach(choice => {
+//   choice.addEventListener('click', e => {
+//     e.preventDefault();
+//     if (!acceptingAnswers) return;
+
+//     acceptingAnswers = false;
+//     const selectedChoice = e.target;
+//     const selectedAnswer = selectedChoice.value;
+
+//     let resultMsg =
+//       selectedAnswer === currentCharacter
+//         ? (messageAnswer.textContent = 'Correct Answer!')
+//         : (messageAnswer.textContent = 'Wrong Answer!');
+
+//     if (resultMsg === 'Correct Answer!') {
+//       incrementScore(SCORE_POINTS);
+//     }
+//   });
+// });
+
+// /////////////////////////////////////////
+// ////  Header - Player Nav
+// ////////////////////////////////////////
+
+// ////////////////////////////
+// //  Generate New Quote   //
+
+// const generateNewQuote = function (array) {
+//   // Clear previous content in DOM
+//   quoteTextAnswer.textContent = '';
+//   quoteNameAnswer.textContent = '';
+//   messageAnswer.textContent = '';
+//   messageChar.textContent = '';
+//   imgChar.style.display = 'none';
+
+//   if (array.length !== 0) {
+//     let randomIndex = Math.floor(Math.random() * array.length);
+//     let { quote, name } = array[randomIndex];
+
+//     array.splice(randomIndex, 1);
+//     // console.log(array);
+//     // New Quote content in DOM
+//     quoteTextAnswer.textContent = quote;
+
+//     curQuote = quote;
+//     curCharacter = name;
+//   } else {
+//     quoteTextAnswer.textContent =
+//       "That's all there is! Great job, see you next time.";
+//     messageAnswer.textContent = 'Reset to play again!';
+//   }
+// };
+
+// // const generateNewQuote = function () {
+// //   let cloneQuotes = [...quotes];
+// //   let randomIndex = Math.floor(Math.random() * cloneQuotes.length);
+// //   let { quote, name } = cloneQuotes[randomIndex];
+
+// //   if (cloneQuotes.length === 0) {
+// //     quoteTextAnswer.textContent = "That's all there is, good job!";
+// //   }
+
+// //   cloneQuotes.splice(randomIndex, 1);
+// //   // console.log(cloneQuotes);
+
+// //   // Clear previous content
+// //   quoteTextAnswer.textContent = '';
+// //   quoteNameAnswer.textContent = '';
+// //   // New Quote content
+// //   quoteTextAnswer.textContent = quote;
+// //   // quoteNameAnswer.textContent = name;
+// // };
+
+// // once we retrieve the randomly generated quote, place it into the HTML doc along with the character name in a different spot
+
+// // first have game run until all the quotes are used
+// // also force stop the application after 5 questions including skips
+// // array = []; || array.length === 0
