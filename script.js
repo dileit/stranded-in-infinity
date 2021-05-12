@@ -20,7 +20,7 @@ const btnOpenModal = document.querySelector('.show-modal');
 // Side Form
 const choices = Array.from(document.querySelectorAll('.side-sel__chk'));
 const submitBtn = document.querySelector('.submit');
-const formSubmit = document.querySelector('#form');
+const sideForm = document.querySelector('#form');
 
 // Game Container
 
@@ -194,6 +194,7 @@ const loadNewQuote = function (e) {
 
     // generate new quote
     getNextQuote();
+    resetForm();
   }
 };
 
@@ -213,6 +214,15 @@ const skipAnswer = function (e) {
   // Load Correct Answer in DOM
   // Skip msg
   messageAnswer.textContent = 'Skipped, click NEXT';
+  quoteNameAnswer.textContent = curAnswer;
+  imgChar.style.display = 'block';
+};
+
+////////////////////////////
+//   Reset Form           //
+///////////////////////////
+const resetForm = function () {
+  sideForm.reset();
 };
 
 ////////////////////////////
@@ -248,6 +258,7 @@ const checkAnswer = function (e) {
   // console.log(curAnswer);
 
   quoteNameAnswer.textContent = curAnswer;
+  imgChar.style.display = 'block';
 };
 
 /////////////////////////
